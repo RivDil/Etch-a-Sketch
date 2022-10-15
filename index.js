@@ -17,26 +17,36 @@ grid(size)
 
 
 let boxes = document.querySelectorAll('.box')
-let mouseDown = false;
+
+
+let down = false;
 
 document.body.addEventListener('mousedown',function(){
-    return mouseDown = true;
-
-});
+    down = true;
+})
+document.body.addEventListener('mouseup',function(){
+    down = false;
+})
 
 document.body.addEventListener('mouseup',function(){
-    return mouseDown = false
-});
-
-
+    if(down){
+        console.log('down')
+    }else{
+        console.log('up')
+    }
+})
 function eraser(){
         boxes.forEach(element => {
             element.addEventListener('mouseover', i => i.target.style.background = '#9999')
         });
 }
 function paint(){
-        return boxes.forEach(element => {
-            element.addEventListener('mouseover', i => i.target.style.background = '#000')
+    if (!down){
+        console.log('algo deberia pasar');
+        boxes.forEach(element => {
+           element.addEventListener('mouseover', i => i.target.style.background = '#000')
         });
+
+    }
 }
 
