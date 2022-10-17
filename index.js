@@ -1,52 +1,51 @@
 let mainContainerCanvas = document.getElementById('main-container__canvas');
+let color = document.getElementById('colorSelector');
 var r = document.querySelector(':root');
+var value = getComputedStyle(r);
+let bcolor = document.getElementById('backgroundColor');
+let rangeBar = document.getElementById('sizeRange');
+let titleSize = document.getElementById('sliderTitle');
 
-let size = parseInt(prompt('choose a size for the canvas'));
+titleSize.innerHTML = '16 x 16';
+
+function backgroundC(){
+    grid()
+    r.style.setProperty('--background', bcolor.value);
+}
 
 
-function grid(px){
-    r.style.setProperty('--col', px);
-    r.style.setProperty('--row', px);
+function eraser(){
+    let boxes = document.querySelectorAll('.box')
+    boxes.forEach(element => {
+        element.addEventListener('mouseover', i => i.target.style.background = bcolor.value);
+    });
+}
+function paint(){
+    let boxes = document.querySelectorAll('.box')
+    boxes.forEach(element => {
+       element.addEventListener('mouseover', i => i.target.style.background = color.value)
+    });
+}
 
-            for (let i =0;i < px * px; i++){
+function raimbow(){
+    let boxes = document.querySelectorAll('.box');
+    boxes.forEach(element => {
+        element.addEventListener('mouseover', i => i.target.style.background = '#' + Math.floor(Math.random()*16777215).toString(16))
+     });
+}
+
+rangeBar.oninput = function() {
+    titleSize.innerHTML = this.value + ' x ' + this.value;
+  }
+
+
+function grid(){
+    mainContainerCanvas.innerHTML = '';
+    r.style.setProperty('--col', rangeBar.value);
+    r.style.setProperty('--row', rangeBar.value);
+            for (let i =0;i < rangeBar.value * rangeBar.value; i++){
             let grid = document.createElement('div')
             mainContainerCanvas.appendChild(grid.cloneNode(true)).classList.add('box')
             }
 }
-grid(size)
-
-
-let boxes = document.querySelectorAll('.box')
-
-
-let down = false;
-
-document.body.addEventListener('mousedown',function(){
-    down = true;
-})
-document.body.addEventListener('mouseup',function(){
-    down = false;
-})
-
-document.body.addEventListener('mouseup',function(){
-    if(down){
-        console.log('down')
-    }else{
-        console.log('up')
-    }
-})
-function eraser(){
-        boxes.forEach(element => {
-            element.addEventListener('mouseover', i => i.target.style.background = '#9999')
-        });
-}
-function paint(){
-    if (!down){
-        console.log('algo deberia pasar');
-        boxes.forEach(element => {
-           element.addEventListener('mouseover', i => i.target.style.background = '#000')
-        });
-
-    }
-}
-
+grid()

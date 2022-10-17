@@ -11,9 +11,23 @@
     <h1>Etch a Sketch!</h1>
     <div id="main-container">
         <div id="main-container__toolbox">
+            <span class="mainColorButton">
+
+                <input type="color" id="colorSelector" class="colorButton">
+            </span>
             <span onclick="paint()">paint</span>
+            <span onclick="raimbow()">Raimbow</span>
             <span onclick="eraser()">Eraser</span>
-            <span>Size</span>
+            <div>
+                <h3>Background color</h3>
+                <span class="mainColorButton">
+                    <input type="color" class="colorButton" id="backgroundColor" value="#ffffff" onchange="backgroundC()">
+                </span>
+            </div>
+            <div class="slidecontainer">
+                <h3 id="sliderTitle"></h3>
+                <input type="range" min="1" max="100" value="16" class="slider" id="sizeRange" onchange="grid()">
+              </div>
         </div>
         <div id="main-container__canvas"></div>
     </div>
