@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/1684884964.js" crossorigin="anonymous"></script>
+
     <title>Etch a Sketch</title>
 </head>
 <body>
@@ -15,10 +17,10 @@
 
                 <input type="color" id="colorSelector" class="colorButton">
             </span>
-            <span onclick="paint()">paint</span>
-            <span onclick="raimbow()">Raimbow</span>
-            <span onclick="eraser()">Eraser</span>
-            <div>
+            <span onclick="paint()"><i class="fa-solid fa-pencil"></i></span>
+            <span onclick="raimbow()"><i class="fa-solid fa-rainbow"></i></span>
+            <span onclick="eraser()"><i class="fa-solid fa-eraser"></i></span>
+            <div class="backgroundColor">
                 <h3>Background color</h3>
                 <span class="mainColorButton">
                     <input type="color" class="colorButton" id="backgroundColor" value="#ffffff" onchange="backgroundC()">
